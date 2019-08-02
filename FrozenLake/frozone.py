@@ -1,8 +1,7 @@
 import gym
-import random
 import numpy as np
 
-env = gym.make('FrozenLake-v0')
+env = gym.make('FrozenLake8x8-v0')
 
 """ Train/Test Constants"""
 
@@ -16,7 +15,7 @@ n_states = env.observation_space.n
 n_actions = env.action_space.n
 
 """ Learning Constants """
-epsilon = 1
+epsilon = .1
 alpha = .65
 gamma = .99
 # Can I get a...
@@ -64,7 +63,7 @@ for episode in range(1, MAX_EPS):
     done = False
     for step in range(1, MAX_TURNS):
         t += 1
-        # env.render()
+        env.render()
         # action = ant_action(obs)
 
         # Get Zach's action
