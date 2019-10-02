@@ -16,6 +16,7 @@ LEARNING_RATE = 0.001
 
 MEMORY_SIZE = 1000000
 
+TOTAL_EPS = 500
 EXPLORATION_MAX = 1.0
 EXPLORATION_MIN = 0.01
 EXPLORATION_DECAY = 0.995
@@ -119,7 +120,8 @@ def pong():
     observation_space = env.observation_space.shape[0]
     action_space = env.action_space.n
     dqn_solver = DQNSolver(observation_space, action_space)
-    while True:
+    ep = 0
+    while ep < TOTAL_EPS:
         obs = env.reset()
         obs = np.reshape(obs, [1, observation_space])
         while True:
@@ -134,11 +136,5 @@ def pong():
             obs = obs_next
             if f:
                 break
-
-# print(tot_states, n_actions): 128 6
-
-
-# for _ in range(1000):
-# env.render()
-# env.step(env.action_space.sample()) # take a random action
-env.close()
+        ep += 1
+    env.close()
